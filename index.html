@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff0f5">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff0f5" />
   <title>Sorry, Choti Bacchi</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --cream: #fff8f2;
@@ -17,11 +19,12 @@
       --gold: #e7b85d;
       --ink: #372638;
       --muted: #725f75;
-      --white: rgba(255, 255, 255, 0.7);
+      --white: rgba(255, 255, 255, 0.72);
       --shadow: 0 24px 70px rgba(160, 79, 118, 0.18);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -34,25 +37,20 @@
       color: var(--ink);
       font-family: "Quicksand", sans-serif;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
 
     body.locked { overflow: hidden; }
+
     button, label { -webkit-tap-highlight-color: transparent; }
 
-    #petals {
+    #petals, #confetti {
       position: fixed;
       inset: 0;
-      z-index: 5;
       pointer-events: none;
     }
 
-    #confetti {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      pointer-events: none;
-    }
+    #petals { z-index: 5; }
+    #confetti { z-index: 80; }
 
     .intro {
       position: fixed;
@@ -65,7 +63,10 @@
       transition: opacity 800ms ease, visibility 800ms ease;
     }
 
-    .intro.hidden { opacity: 0; visibility: hidden; }
+    .intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
     .intro-inner {
       display: grid;
@@ -85,7 +86,9 @@
       perspective: 700px;
     }
 
-    .env-body, .env-flap, .env-pocket, .env-seal { position: absolute; }
+    .env-body, .env-flap, .env-pocket, .env-seal {
+      position: absolute;
+    }
 
     .env-body {
       inset: 0;
@@ -207,7 +210,6 @@
       50% { transform: translateY(10px); }
     }
 
-    /* countdown */
     .countdown {
       display: flex;
       gap: 14px;
@@ -259,7 +261,7 @@
       min-height: 320px;
     }
 
-    .letter .typed-cursor {
+    .typed-cursor {
       display: inline-block;
       width: 2px;
       margin-left: 2px;
@@ -361,11 +363,9 @@
       place-items: center;
       overflow: hidden;
       position: relative;
-      border: 2px dashed rgba(220, 82, 111, 0.38);
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.58);
-      cursor: pointer;
-      transition: transform 200ms ease, border-color 200ms ease;
+      transition: transform 200ms ease;
     }
 
     .photo-slot.feature {
@@ -373,10 +373,7 @@
       aspect-ratio: auto;
     }
 
-    .photo-slot:hover {
-      border-color: rgba(220, 82, 111, 0.78);
-      transform: translateY(-3px);
-    }
+    .photo-slot:hover { transform: translateY(-3px); }
 
     .photo-slot img {
       width: 100%;
@@ -403,16 +400,11 @@
       backdrop-filter: blur(8px);
     }
 
-    .photo-slot input { display: none; }
-
     .music-control {
       position: fixed;
       right: 22px;
       bottom: 22px;
       z-index: 50;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .icon-btn {
@@ -420,7 +412,7 @@
       height: 58px;
       display: grid;
       place-items: center;
-      font-size: 1.25rem;
+      font-size: 0.95rem;
     }
 
     .icon-btn.playing { animation: pulse 1.6s ease-in-out infinite; }
@@ -436,18 +428,12 @@
       transition: transform 200ms ease;
     }
 
-    .heart-final.popped {
-      animation: heartPop 600ms ease;
-    }
+    .heart-final.popped { animation: heartPop 600ms ease; }
 
     @keyframes heartPop {
       0% { transform: scale(1); }
       40% { transform: scale(1.4); }
       100% { transform: scale(1); }
-    }
-
-    #forgiveBtn {
-      margin-top: 8px;
     }
 
     .forgiven-note {
@@ -473,18 +459,15 @@
         bottom: 16px;
       }
 
-      .countdown .unit { min-width: 64px; padding: 10px 6px; }
+      .countdown .unit {
+        min-width: 64px;
+        padding: 10px 6px;
+      }
     }
 
     @media (max-width: 430px) {
-      section {
-        min-height: 100svh;
-        padding: 58px 14px;
-      }
-
-      .hero {
-        padding-bottom: 86px;
-      }
+      section { padding: 58px 14px; }
+      .hero { padding-bottom: 86px; }
 
       .letter {
         font-size: 1.35rem;
@@ -492,9 +475,7 @@
         padding: 28px 22px;
       }
 
-      .gallery {
-        gap: 12px;
-      }
+      .gallery { gap: 12px; }
 
       .photo-caption {
         right: 8px;
@@ -508,16 +489,9 @@
         height: 52px;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
-    }
   </style>
 </head>
+
 <body class="locked">
   <canvas id="petals" aria-hidden="true"></canvas>
   <canvas id="confetti" aria-hidden="true"></canvas>
@@ -540,15 +514,14 @@
       <h1>I'm <em>sorry</em>,<br>choti bacchi.</h1>
       <p class="sub">Maine kuch aisa kiya jisse tumhe dukh hua, aur woh mujhe khud se bhi zyada bura lag raha hai. Neeche scroll karo, kuch baatein hain jo tumse seedhe dil se kehni hain.</p>
 
-      <!-- Countdown: kab se sorry keh raha hu -->
-      <div class="countdown" id="countdown" aria-label="Time since I started saying sorry">
+      <div class="countdown" id="countdown">
         <div class="unit"><span class="num" id="cd-days">0</span><span class="lbl">din</span></div>
         <div class="unit"><span class="num" id="cd-hours">0</span><span class="lbl">ghante</span></div>
         <div class="unit"><span class="num" id="cd-mins">0</span><span class="lbl">minute</span></div>
         <div class="unit"><span class="num" id="cd-secs">0</span><span class="lbl">second</span></div>
       </div>
-      <p class="sub" style="margin-top:10px; font-family:'Caveat',cursive; font-size:1.15rem;">jab se main sorry keh raha hoon &mdash; har second ginta hoon</p>
 
+      <p class="sub" style="margin-top:10px; font-family:'Caveat',cursive; font-size:1.15rem;">jab se main sorry keh raha hoon &mdash; har second ginta hoon</p>
       <div class="scroll-cue">scroll karo &darr;</div>
     </section>
 
@@ -564,7 +537,7 @@
         <p class="eyebrow">sorry-meter</p>
         <h1 class="compact-title">Click karo, dekho kitna sorry hoon</h1>
         <button class="primary-btn" id="sorryBtn">Sorry bolne do na</button>
-        <div class="meter-bar" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div>
+        <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
         <div class="meter-label" id="meterLabel"></div>
       </div>
     </section>
@@ -573,42 +546,37 @@
       <div class="gallery-wrap">
         <p class="eyebrow">hamari yaadein</p>
         <h1 class="compact-title">Hamari favourite yaadein</h1>
-        <div class="gallery" id="gallery">
-          <label class="photo-slot feature" data-focus="top">
-            <img src="assets/daraksha-01.png" alt="Daraksha in red saree">
+
+        <div class="gallery">
+          <div class="photo-slot feature" data-focus="top">
+            <img src="assets/daraksha-01.jpeg" alt="Daraksha in red saree">
             <span class="photo-caption">sabse pyari</span>
-            <input type="file" accept="image/*">
-          </label>
+          </div>
 
-          <label class="photo-slot">
-            <img src="assets/memory-rose.png" alt="Flower memory">
+          <div class="photo-slot">
+            <img src="assets/memory-rose.jpeg" alt="Flower memory">
             <span class="photo-caption">ek yaad</span>
-            <input type="file" accept="image/*">
-          </label>
+          </div>
 
-          <label class="photo-slot" data-focus="left">
-            <img src="assets/daraksha-02.png" alt="Soft selfie">
+          <div class="photo-slot" data-focus="left">
+            <img src="assets/daraksha-02.jpeg" alt="Soft selfie">
             <span class="photo-caption">soft wali smile</span>
-            <input type="file" accept="image/*">
-          </label>
+          </div>
 
-          <label class="photo-slot">
-            <img src="assets/daraksha-03.png" alt="Close-up memory">
+          <div class="photo-slot">
+            <img src="assets/daraksha-03.jpeg" alt="Close-up memory">
             <span class="photo-caption">cute gussa</span>
-            <input type="file" accept="image/*">
-          </label>
+          </div>
 
-          <label class="photo-slot" data-focus="top">
-            <img src="assets/daraksha-04.png" alt="Eid look">
+          <div class="photo-slot" data-focus="top">
+            <img src="assets/daraksha-04.jpeg" alt="Eid look">
             <span class="photo-caption">eid look</span>
-            <input type="file" accept="image/*">
-          </label>
+          </div>
 
-          <label class="photo-slot">
-            <img src="assets/memory-pikachu.png" alt="Handmade drawing memory">
+          <div class="photo-slot">
+            <img src="assets/memory-pikachu.jpeg" alt="Handmade drawing memory">
             <span class="photo-caption">done with love</span>
-            <input type="file" accept="image/*">
-          </label>
+          </div>
         </div>
       </div>
     </section>
@@ -617,16 +585,18 @@
       <div class="heart-final" id="finalHeart">&hearts;</div>
       <h1>Maaf kar do na, <em>choti bacchi</em>.</h1>
       <p class="sub">Promise, aage se aur dhyan rakhunga. I love you, Daraksha.</p>
-      <button class="primary-btn" id="forgiveBtn">Maine maaf kar diya 💗</button>
+      <button class="primary-btn" id="forgiveBtn">Maine maaf kar diya</button>
       <p class="forgiven-note" id="forgivenNote"></p>
     </section>
   </main>
 
   <div class="music-control">
-    <button class="icon-btn" id="musicToggle" type="button" title="Play or pause music" aria-label="Play or pause music">♪</button>
+    <button class="icon-btn" id="musicToggle" type="button" title="Play or pause music">Play</button>
   </div>
 
-  <audio id="song" src="assets/saudebaazi-part.mpeg" preload="auto"></audio>
+  <audio id="song" preload="auto" playsinline>
+    <source src="assets/saudebaazi.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const envelope = document.getElementById("envelope");
@@ -635,31 +605,70 @@
     const song = document.getElementById("song");
     const musicBtn = document.getElementById("musicToggle");
 
+    let isSongStarting = false;
+
     async function playSong() {
+      if (isSongStarting || !song.paused) return;
+
+      isSongStarting = true;
+
       try {
+        song.muted = false;
+        song.volume = 1;
+
         await song.play();
-        musicBtn.textContent = "❚❚";
+
+        musicBtn.textContent = "Pause";
         musicBtn.classList.add("playing");
-      } catch {
-        musicBtn.textContent = "▶";
+        console.log("Song playing");
+      } catch (error) {
+        console.log("Song error:", error);
+        musicBtn.textContent = "Play";
         musicBtn.classList.remove("playing");
+      } finally {
+        isSongStarting = false;
       }
     }
 
-    envelope.addEventListener("click", () => {
-      if (envelope.classList.contains("open")) return;
-      envelope.classList.add("open");
-      playSong();
-      startTyping();
+    function pauseSong() {
+      if (!song.paused) {
+        song.pause();
+      }
 
-      setTimeout(() => {
-        intro.classList.add("hidden");
-        main.classList.add("show");
-        document.body.classList.remove("locked");
-      }, 700);
+      musicBtn.textContent = "Play";
+      musicBtn.classList.remove("playing");
+    }
+
+envelope.addEventListener("click", () => {
+  if (envelope.classList.contains("open")) return;
+
+  envelope.classList.add("open");
+
+  playSong();
+  startTyping();
+
+  setTimeout(() => {
+    intro.classList.add("hidden");
+    main.classList.add("show");
+    document.body.classList.remove("locked");
+  }, 700);
+});
+
+    musicBtn.addEventListener("click", async () => {
+      if (isSongStarting) return;
+
+      if (song.paused) {
+        await playSong();
+      } else {
+        pauseSong();
+      }
     });
 
-    /* ===== Falling petals ===== */
+    song.addEventListener("ended", () => {
+      musicBtn.textContent = "Play";
+      musicBtn.classList.remove("playing");
+    });
+
     const canvas = document.getElementById("petals");
     const ctx = canvas.getContext("2d");
     const colors = ["#ffd9e6", "#dc526f", "#b98bd1", "#e7b85d", "#79a88a"];
@@ -697,6 +706,7 @@
 
     function animatePetals() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       petals.forEach((petal) => {
         petal.y += petal.speed;
         petal.x += petal.drift;
@@ -716,7 +726,6 @@
     window.addEventListener("resize", resizeCanvas);
     animatePetals();
 
-    /* ===== Sorry meter ===== */
     const sorryBtn = document.getElementById("sorryBtn");
     const meterFill = document.getElementById("meterFill");
     const meterLabel = document.getElementById("meterLabel");
@@ -742,53 +751,11 @@
       }
     });
 
-    /* ===== Photo upload preview ===== */
-    document.querySelectorAll(".photo-slot input").forEach((input) => {
-      input.addEventListener("change", () => {
-        const file = input.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          const slot = input.parentElement;
-          const caption = slot.querySelector(".photo-caption");
-          slot.innerHTML = "";
-
-          const img = document.createElement("img");
-          img.src = reader.result;
-          img.alt = "Uploaded memory";
-          slot.appendChild(img);
-          if (caption) slot.appendChild(caption);
-        };
-
-        reader.readAsDataURL(file);
-      });
-    });
-
-    /* ===== Music ===== */
-    musicBtn.addEventListener("click", async () => {
-      if (song.paused) {
-        await playSong();
-      } else {
-        song.pause();
-        musicBtn.textContent = "▶";
-        musicBtn.classList.remove("playing");
-      }
-    });
-
-    song.addEventListener("ended", () => {
-      musicBtn.textContent = "▶";
-      musicBtn.classList.remove("playing");
-    });
-
-    /* ===== Countdown: time since sorry started ===== */
-    // Edit this date if you want the countdown to start from a different moment.
     const SORRY_START = new Date("2026-06-30T00:00:00");
 
     function updateCountdown() {
       const now = new Date();
-      let diff = Math.max(0, now - SORRY_START);
+      const diff = Math.max(0, now - SORRY_START);
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -804,7 +771,6 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    /* ===== Typing animation on the letter ===== */
     const letterLines = [
       "Daraksha,",
       "",
@@ -814,14 +780,17 @@
       "",
       "Sorry, mere paas tumhare gusse ka koi jawab nahi hai, sirf yeh website hai, jo sirf isliye banayi hai ki tum jaan sako ki tum mere liye kitni important ho."
     ];
+
     const fullText = letterLines.join("\n");
     const letterText = document.getElementById("letterText");
     const typedCursor = document.getElementById("typedCursor");
+
     let typingStarted = false;
     let typingDone = false;
 
     function startTyping() {
       if (typingStarted) return;
+
       typingStarted = true;
       let i = 0;
 
@@ -832,22 +801,25 @@
           setTimeout(typeChar, 18);
         } else {
           typingDone = true;
+
           const sign = document.createElement("div");
           sign.className = "sign";
           sign.textContent = "- hamesha tumhara";
           letterText.parentElement.appendChild(sign);
+
           typedCursor.style.display = "none";
         }
       }
+
       typeChar();
     }
 
-    // Fallback: if the envelope was already opened before this script attached, or for accessibility (skip animation on click)
     document.getElementById("letter").addEventListener("click", () => {
       if (!typingDone) {
         letterText.innerHTML = fullText.replace(/\n/g, "<br>");
         typingDone = true;
         typedCursor.style.display = "none";
+
         if (!letterText.parentElement.querySelector(".sign")) {
           const sign = document.createElement("div");
           sign.className = "sign";
@@ -857,7 +829,6 @@
       }
     });
 
-    /* ===== Confetti / hearts burst on "Maine maaf kar diya" ===== */
     const forgiveBtn = document.getElementById("forgiveBtn");
     const forgivenNote = document.getElementById("forgivenNote");
     const finalHeart = document.getElementById("finalHeart");
@@ -868,15 +839,18 @@
       confettiCanvas.width = window.innerWidth;
       confettiCanvas.height = window.innerHeight;
     }
+
     resizeConfetti();
     window.addEventListener("resize", resizeConfetti);
 
-    const confettiShapes = ["heart", "circle"];
     const confettiColors = ["#dc526f", "#b98bd1", "#e7b85d", "#ffd9e6", "#79a88a"];
+    let confettiPieces = [];
+    let confettiRunning = false;
 
     function makeConfettiPiece(originX, originY) {
       const angle = Math.random() * Math.PI * 2;
       const speed = 3 + Math.random() * 6;
+
       return {
         x: originX,
         y: originY,
@@ -887,24 +861,10 @@
         rotation: Math.random() * Math.PI * 2,
         spin: (Math.random() - 0.5) * 0.3,
         color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
-        shape: confettiShapes[Math.floor(Math.random() * confettiShapes.length)],
         life: 0,
         maxLife: 90 + Math.random() * 40
       };
     }
-
-    function drawHeartShape(size) {
-      cctx.beginPath();
-      const s = size / 2;
-      cctx.moveTo(0, s * 0.3);
-      cctx.bezierCurveTo(s, -s * 0.6, s * 1.6, s * 0.5, 0, s * 1.4);
-      cctx.bezierCurveTo(-s * 1.6, s * 0.5, -s, -s * 0.6, 0, s * 0.3);
-      cctx.closePath();
-      cctx.fill();
-    }
-
-    let confettiPieces = [];
-    let confettiRunning = false;
 
     function burstConfetti() {
       const rect = forgiveBtn.getBoundingClientRect();
@@ -936,15 +896,9 @@
         cctx.rotate(p.rotation);
         cctx.globalAlpha = Math.max(0, 1 - p.life / p.maxLife);
         cctx.fillStyle = p.color;
-
-        if (p.shape === "heart") {
-          drawHeartShape(p.size);
-        } else {
-          cctx.beginPath();
-          cctx.arc(0, 0, p.size / 2.4, 0, Math.PI * 2);
-          cctx.fill();
-        }
-
+        cctx.beginPath();
+        cctx.arc(0, 0, p.size / 2.4, 0, Math.PI * 2);
+        cctx.fill();
         cctx.restore();
       });
 
@@ -959,18 +913,20 @@
     }
 
     const forgiveMessages = [
-      "yayy! choti bacchi maan gayi 🥹💗",
-      "ab smile wapas aa gayi na? 😄",
-      "i love you, Daraksha 🤍"
+      "yayy! choti bacchi maan gayi",
+      "ab smile wapas aa gayi na?",
+      "i love you, Daraksha"
     ];
 
     forgiveBtn.addEventListener("click", () => {
       burstConfetti();
+
       finalHeart.classList.remove("popped");
       void finalHeart.offsetWidth;
       finalHeart.classList.add("popped");
+
       forgivenNote.textContent = forgiveMessages[Math.floor(Math.random() * forgiveMessages.length)];
-      forgiveBtn.textContent = "Maaf kar diya ✓";
+      forgiveBtn.textContent = "Maaf kar diya";
     });
   </script>
 </body>
